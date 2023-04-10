@@ -1,9 +1,9 @@
-import { FormEvent, ReactNode, createContext, useContext, useState } from "react";
+import { Dispatch, FormEvent, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CoffeeContext } from "./CoffeeContext";
 
 interface DeliveryContextProps{
-    setPayment: () => {},
+    setPayment: Dispatch<SetStateAction<string>>
     setCEP: Function,
     setStreet: Function,
     setNumber: Function,
@@ -11,7 +11,7 @@ interface DeliveryContextProps{
     setCity: Function,
     setUF: Function,
     payment: string,
-    handleConfirmDelivery: (event: FormEvent) => {},
+    handleConfirmDelivery: (event: FormEvent) => void,
     street: string,
     number: string,
     city: string,
