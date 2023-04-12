@@ -10,9 +10,7 @@ export function Header(){
 
   return(
     <div className="flex justify-between px-40 py-8 bg-[#FAFAFA] max-w-[1440px] mx-auto sticky top-0 z-10">
-         <NavLink to="/" title="Homepage">
             <img src={Logo}/>
-          </NavLink> 
       <div className="flex justify-center gap-3">
         <div className="flex text-[#4B2995] bg-[#EBE5F9] p-2 gap-1 rounded-md">
           <MapPin size={22} />

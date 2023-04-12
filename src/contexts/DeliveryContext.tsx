@@ -1,6 +1,5 @@
-import { Dispatch, FormEvent, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { CoffeeContext } from "./CoffeeContext";
+import { Dispatch, FormEvent, ReactNode, SetStateAction, createContext, useState } from "react";
+
 
 interface DeliveryContextProps{
     setPayment: Dispatch<SetStateAction<string>>

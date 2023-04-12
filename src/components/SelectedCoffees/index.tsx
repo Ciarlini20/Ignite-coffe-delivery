@@ -2,6 +2,7 @@ import { Minus, Plus, Trash } from "phosphor-react"
 import { useContext } from "react"
 import { CoffeeContext } from "../../contexts/CoffeeContext"
 
+
 interface SelectedCoffeesProps{
   id: string
   image: string
@@ -11,13 +12,52 @@ interface SelectedCoffeesProps{
 }
 
 export function SelectedCoffees(props : SelectedCoffeesProps){
-  const {selectedCoffees, addSelectedCoffees} = useContext(CoffeeContext)
 
-  function decreaseCoffeeAmount(){}
+  const {removeSelectedCoffee, updateSelectedCoffees, increasePrice, decreasePrice} = useContext(CoffeeContext)
 
-  function increaseCoffeeAmount(){}
+  function removeCoffee(){
+    const removedCoffee = {
+      id: props.id,
+      amount: props.amount,
+      price: props.price
+    }
 
-  function removeCoffee(){}
+    removeSelectedCoffee(removedCoffee)
+  }
+
+  function decreaseCoffeeAmount(){
+    if(props.amount === 1){
+      removeCoffee()
+    }else{
+      const decreaseCoffeeAmount = props.amount - 1
+      const updateCoffee = {
+        id: props.id,
+        image: props.image,
+        name: props.name,
+        price: props.price,
+        coffeeAmount: decreaseCoffeeAmount,
+      }
+  
+      updateSelectedCoffees(updateCoffee)
+      decreasePrice(updateCoffee)     
+    }
+  }
+
+  function increaseCoffeeAmount(){
+    const increaseCoffeeAmount = props.amount + 1
+    
+    const updateCoffee = {
+      id: props.id,
+      image: props.image,
+      name: props.name,
+      price: props.price,
+      coffeeAmount: increaseCoffeeAmount,
+    }
+
+    updateSelectedCoffees(updateCoffee)
+    increasePrice(updateCoffee)
+  }
+
 
 
   return(
@@ -32,7 +72,7 @@ export function SelectedCoffees(props : SelectedCoffeesProps){
         <div  className="flex items-center justify-center bg-[#E6E5E5] text-[#272221] font-roboto gap-1 px-2 py-1 rounded-md">
               <button 
                 className="text-[#8047F8]"
-                //onClick={decreaseCoffeeAmount}
+                onClick={decreaseCoffeeAmount}
               >
                 <Minus size={16} />
               </button>
@@ -41,14 +81,14 @@ export function SelectedCoffees(props : SelectedCoffeesProps){
               </span>
               <button 
                 className="text-[#8047F8]"
-                //onClick={increaseCoffeeAmount}
+                onClick={increaseCoffeeAmount}
               >
                 <Plus size={16} />
               </button>
             </div>
             <button 
               className="flex items-center gap-1 bg-[#E6E5E5] text-[#574F4D] text-xs px-2 py-1 rounded-md"
-              //onClick={removeCoffee}
+              onClick={removeCoffee}
               >
               <span className="text-[#8047F8]"><Trash size={16}/></span>REMOVER
             </button>
